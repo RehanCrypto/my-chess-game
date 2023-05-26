@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chess Game</title>
+  <style>
+    /* CSS styling for the chessboard */
+    .chessboard {
+      display: flex;
+      flex-wrap: wrap;
+      width: 400px;
+      height: 400px;
+    }
+    
+    .square {
+      width: 50px;
+      height: 50px;
+      border: 1px solid #000;
+      box-sizing: border-box;
+    }
+    
+    .black {
+      background-color: #8B4513;
+    }
+    
+    .white {
+      background-color: #FFFACD;
+    }
+    
+    /* CSS styling for the chess pieces */
+    .piece {
+      width: 50px;
+      height: 50px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    
+    .piece.bRook {
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/5c/Chess_rdt45.svg');
+    }
+    
+    .piece.bKnight {
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/28/Chess_ndt45.svg');
+    }
+    
+    /* Add more piece classes with their respective background images */
+    
+  </style>
+</head>
+<body>
+  <div class="chessboard">
+    <div class="square black"></div>
+    <div class="square white"></div>
+    <!-- Repeat the above two lines to create the entire chessboard -->
+  </div>
+
+  <script>
+    // JavaScript logic for the chess game
+    document.addEventListener('DOMContentLoaded', () => {
+      const chessboard = document.querySelector('.chessboard');
+      let isBlack = false;
+      
+      for (let i = 0; i < 64; i++) {
+        const square = document.createElement('div');
+        square.classList.add('square');
+        square.classList.add(isBlack ? 'black' : 'white');
+        chessboard.appendChild(square);
+        
+        isBlack = !isBlack;
+        
+        // Add event listener for handling piece placement
+        square.addEventListener('click', () => {
+          const piece = prompt('Enter piece (e.g., bRook, bKnight):');
+          square.innerHTML = `<div class="piece ${piece}"></div>`;
+        });
+      }
+    });
+  </script>
+</body>
+</html>
